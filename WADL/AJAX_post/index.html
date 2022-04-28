@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th {
+            text-align: left;
+        }
+
+        table,
+        td,
+        th {
+
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Hello</h2>
+    <label for="">Name</label>
+    <input id="username" type="text" value="">
+    <label for="">Email</label>
+    <input id="email" type="text" value="">
+    <button type="submit" onClick="submitFunc()" id="submitBtn">Add User</button>
+    <p id="serverResponse"></p>
+    <button type="submit" onClick="viewUsers()" id="submitBtn">View User</button>
+    <p id="userInfo"></p>
+</body>
+
+</html>
+<script type="text/javascript">
+    var arr = []
+    function submitFunc() {
+        const xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            const serverResponse = document.getElementById("serverResponse");
+            serverResponse.innerHTML = this.responseText;
+
+        };
+        var name1 = document.getElementById("username").value;
+        var email1 = document.getElementById("email").value;
+
+        arr.push({ name: name1, email: email1 })
+        localStorage.setItem("users", JSON.stringify(arr));
+        console.log(arr);
+        xhr.open("POST", "dom.php");
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send("name=" + name1 + "&email=" + email1);
+    }
+
+    function viewUsers() {
+        var storedNames = JSON.parse(localStorage.getItem("users"));
+        for (i in storedNames) {
+            const userInfo = document.getElementById("userInfo");
+            userInfo.innerHTML = storedNames[i].name;
+            console.log(storedNames[i].name);
+        }
+        var col = [];
+        for (var i = 0; i < storedNames.length; i++) {
+            for (var key in storedNames[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+            }
+        }
+        var table = document.createElement("table");
+        var tr = table.insertRow(-1);                   // TABLE ROW.
+
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+
+        for (var i = 0; i < storedNames.length; i++) {
+
+            tr = table.insertRow(-1);
+
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = storedNames[i][col[j]];
+            }
+        }
+        var divContainer = document.getElementById("userInfo");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+    }
+</script>
