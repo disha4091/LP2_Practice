@@ -3,10 +3,10 @@ const mongoose = require('mongoose');
 const StudentSchema = mongoose.Schema({
     Name: String,
     RollNo: String ,
-    WadMarks: String,
-    CCMarks: String,
-    DSBDAMarks: String,
-    CNSMarks: String,
+    WadMarks: Number,
+    CCMarks: Number,
+    DSBDAMarks: Number,
+    CNSMarks: Number,
 
 }, {
     timestamps: true

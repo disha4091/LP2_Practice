@@ -1,5 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');var app = express()
+const bodyParser = require('body-parser');
+var app = express()
 var port = 3000
 const Music =require('./models')
 
