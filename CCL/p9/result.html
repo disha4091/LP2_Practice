@@ -1,15 +1,56 @@
+<style>
+  table {
+	display: table;
+}
+table tr {
+	display: table-cell;
+}
+table tr td {
+	display: block;
+  padding:15px;
+}
+</style>
 <html>
+
+  
     <div class="container">
         <div class="widget">
           <div class="details">
-            <div class="temperature">Name: {{ name }}</div>
-            <div class="summary">
-              <p class="summaryText">Type: {{ type }}</p>
-            </div>
-            <div class="precipitation">Language: {{ language }}</div>
-            <div class="wind">Official site: {{ officialSite }}</div>
-            <div class="wind">Schedule: {{ Schedule }}</div>
-          </div>
+            <table border="1">
+              <tr>
+                <td>Name</td>
+                {% for name1 in name %}
+                <td>{{ name1 }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <td>Type</td>
+                {% for name1 in type %}
+                <td>{{ name1 }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <td>Language</td>
+                {% for name1 in language %}
+                <td>{{ name1 }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <td>Official site</td>
+                {% for name1 in officialSite %}
+                <td>{{ name1 }}</td>
+                {% endfor %}
+              </tr>
+              <tr>
+                <td>Schedule time</td>
+                {% for name1 in schedule %}
+                <td>{{ name1 }}</td>
+                {% endfor %}
+              </tr>
+          </table>
+           
+            
         </div>
       </div>
+    
 </html>
