@@ -1,0 +1,20 @@
+<h1>
+  Routing
+</h1>
+<style>
+  nav a.active{
+    background-color:yellow;
+  }
+  a{
+    margin: 10px;
+  }
+</style>
+<nav>
+  <a routerLink="/departments" routerLinkActive="">Department</a>
+  <a routerLink="/employees" routerLinkActive="">Employees</a>
+  <a routerLink="/table" routerLinkActive="">Table</a>
+  <a routerLink="/register" routerLinkActive="">Register</a>
+  <a routerLink="/profile" routerLinkActive="">Profile</a>
+
+</nav>
+<router-outlet></router-outlet>
